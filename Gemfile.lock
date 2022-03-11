@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/firstdraft/draft_generators.git
-  revision: bbbf1a7475db166813fc25fbecd78dd83605eb40
+  revision: 2635764769e293ef79d8183392cd4e8ae17cc2c4
   branch: winter-2020
   specs:
     draft_generators (0.0.3)
@@ -415,6 +415,8 @@ GEM
       unf_ext
     unf (0.1.4-java)
     unf_ext (0.0.8)
+    unf_ext (0.0.8-x64-mingw32)
+    unf_ext (0.0.8-x86-mingw32)
     unicode-display_width (2.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
