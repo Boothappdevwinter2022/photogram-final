@@ -5,4 +5,7 @@ class UsersController < ApplicationController
     render({ :template => "users/index.html.erb"})
   end
 
+  def show
+    render({ :template => 'users/show.html.erb"'})
+  end
 end
