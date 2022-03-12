@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully."} )
+      redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully." })
     else
       redirect_to("/comments/#{the_comment.id}", { :alert => the_comment.errors.full_messages.to_sentence })
     end
@@ -53,6 +53,6 @@ class CommentsController < ApplicationController
 
     the_comment.destroy
 
-    redirect_to("/comments", { :notice => "Comment deleted successfully."} )
+    redirect_to("/comments", { :notice => "Comment deleted successfully." })
   end
 end

@@ -12,14 +12,25 @@
 
   <dt>Followers</dt>
   <dd>
-    <%= @follow_request_received_accepted.count %>  
     <div>
-      <form action="/insert_follow_request" method="post">
-        <input type="hidden" name="query_recipient_id" value=<%= @the_user.id %>>
-        <button>
-          Follow
-        </button>
-      </form>
+    <%= @follow_request_received_accepted.count %>
+    </div>
+    <div>
+    <% if @current_user.id != @the_user.id %>  
+      <% if @current_follower.nil? == false %>
+        <a href="/delete_follow_request/<%= @current_follower.id %>">Unfollow</a>
+      <% else %>
+        <div>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" id="query_recipient_id" value=<%= @the_user.id %>>
+            <input type="hidden" name="query_sender_id" id="query_sender_id" value=<%= @current_user.id %>>
+            <button>
+              Follow
+            </button>
+          </form>
+        </div>
+      <% end %>
+    <% end %>
     </div>
   </dd>
 
