@@ -21,15 +21,14 @@ class FollowRequestsController < ApplicationController
     the_follow_request = FollowRequest.new
     the_follow_request.recipient_id = params.fetch("query_recipient_id")
     the_follow_request.sender_id = params.fetch("query_sender_id")
-    the_follow_request.status = "accepted"
 
     @follow_request_recipient = User.where({:id => params.fetch("query_recipient_id")}).at(0)
 
-    # if @follow_request_recipient.private == true
-    #   @the_follow_request.status = "pending"
-    # else
-    #   @the_follow_request.status = "accepted"
-    # end
+    if @follow_request_recipient.private == true
+      the_follow_request.status = "pending"
+    else
+      the_follow_request.status = "accepted"
+    end
 
     if the_follow_request.valid?
       the_follow_request.save
@@ -65,10 +64,7 @@ class FollowRequestsController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_follow_request = FollowRequest.where({ :id => the_id }).at(0)
-
     the_follow_request.destroy
-    
     redirect_to(@current_page, { :notice => "Follow request deleted successfully." })
-
   end
 end

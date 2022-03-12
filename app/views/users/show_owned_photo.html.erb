@@ -16,9 +16,11 @@
     <%= @follow_request_received_accepted.count %>
     </div>
     <div>
-    <% if @current_user.id != @the_user.id %>  
+    <% if @current_user.id == @the_user.id %>
+      <% @current_user.username %>
+    <% else %>
       <% if @current_follower.nil? == false %>
-        <a href="/delete_follow_request/<%= @current_follower.id %>">Unfollow</a>
+        <a href="/delete_follow_request/<%= @current_follower.id %>"> Unfollow </a>
       <% else %>
         <div>
           <form action="/insert_follow_request" method="post">
