@@ -10,6 +10,6 @@
 #  photo_id   :integer
 #
 class Comment < ApplicationRecord
-  belongs_to( :user, { :foreign_key => "author_id"})
-  belongs_to( :photo)
+  belongs_to(:user, { :foreign_key => "author_id" })
+  belongs_to(:photo)
 end
