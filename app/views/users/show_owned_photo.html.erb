@@ -72,30 +72,32 @@
     <th></th>
   </tr>
 
+  <% @the_user.photos.each do |a_photo|%>
   <tr>
     <td>
-      <img src="https://robohash.org/atharumblanditiis">
+      <img src="<%= a_photo.image %>">
     </td>
 
     <td>
-      bob
+      <%= @the_user.username %>
     </td>
 
     <td>
-      Fear cuts deeper than swords.
+      <%= a_photo.caption %>
     </td>
 
     <td>
-      over 4 years ago
+      <%= a_photo.created_at %>
     </td>
 
     <td>
-      6
+      <%= a_photo.likes_count %>
     </td>
 
     <td>
-      <a href="/photos/747">
+      <a href="/photos/<%= a_photo.id %>">
         Show details
       </a>
     </td>
   </tr>
+  <% end %>

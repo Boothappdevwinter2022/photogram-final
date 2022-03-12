@@ -74,8 +74,8 @@ Rails.application.routes.draw do
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
-  # SHOW USER PROFILE PAGE
-  get("/users/:a_username", { :controller => "users", :action => "show"})
+  # SHOW USER OWNED PHOTO PAGE
+  get("/users/:a_username", { :controller => "users", :action => "owned_photo"})
 
   # ------------------------------
 
