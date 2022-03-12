@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # Routes for the Like resource:
 
-  # CREATE
+  # INSERT A LIKE / ADD A FAN
   post("/insert_like", { :controller => "likes", :action => "create" })
           
   # READ
