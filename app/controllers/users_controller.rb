@@ -27,14 +27,16 @@ class UsersController < ApplicationController
     else 
       if @current_user.id == @the_user.id
         render({ :template => "users/show_owned_photo.html.erb"})
-      elsif @the_user.private == false
-        render({ :template => "users/show_owned_photo.html.erb"})
       else
-        @current_follower = @follow_request_received_accepted.where(:sender_id => @current_user.id).at(0)
-        if @current_follower.nil? == false
+        if @the_user.private == false
           render({ :template => "users/show_owned_photo.html.erb"})
         else
-          redirect_to("/users", { :notice => "You're not authorized for that."})
+          @current_follower = @follow_request_received_accepted.where(:sender_id => @current_user.id).at(0)
+          if @current_follower.nil? == false
+            render({ :template => "users/show_owned_photo.html.erb"})
+          else
+            redirect_to("/users", { :notice => "You're not authorized for that."})
+          end
         end
       end
     end
