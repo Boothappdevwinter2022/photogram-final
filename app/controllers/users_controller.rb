@@ -39,4 +39,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def liked_photo
+    render({ :template => "users/show_liked_photo.html.erb" })
+  end
 end

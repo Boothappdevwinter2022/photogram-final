@@ -17,5 +17,6 @@ class Photo < ApplicationRecord
   has_many( :likes)
   has_many( :fans, :through => :likes, :source => :user)
   has_many( :commenters, :through => :comments, :source => :user)
-
+  
+  mount_uploader :image, ImageUploader
 end
