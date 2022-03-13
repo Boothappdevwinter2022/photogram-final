@@ -25,12 +25,28 @@
         <%= "No" %>
       <% end %>
     </td>
-
-    <% if @current_user.nil? == false %>
-      <td>
-        <button> Follow </button>
-      </td>
-    <% end %>
+    
+    <td>
+      <% if @current_user.nil? == false %>
+        <% @follow_request = FollowRequest.where({:recipient_id => user.id}).where({:sender_id => @current_user.id}) %>
+        <% @follow_request_accepted = @follow_request.where({:status=> "accepted"}).at(0)%>
+        <% @follow_request_pending = @follow_request.where({:status=> "pending"}).at(0)%>
+        <% if @follow_request.at(0).nil? == true %>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" id="query_recipient_id" value=<%= user.id %>>
+            <input type="hidden" name="query_sender_id" id="query_sender_id" value=<%= @current_user.id %>>
+            <button>
+              Follow
+            </button>
+          </form>
+        <% elsif @follow_request_accepted.nil? == false %>
+          <a href="/delete_follow_request/<%= @follow_request_accepted.id %>"> Unfollow </a>
+        <% elsif @follow_request_pending.nil? == false %>
+          Request sent.
+          <a href="/">Cancel</a>
+        <% end %>
+      <% end %>
+    </td>
 
     <td>
       <a href="users/<%=user.username%>">

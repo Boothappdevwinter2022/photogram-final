@@ -20,11 +20,10 @@ class UsersController < ApplicationController
     # @follow_request_received_rejected = @follow_request_received.where({ :status => "rejected"})
     # @follow_request_sent_rejected = @follow_request_sent.where({ :status => "rejected"})
 
-    @current_follower = @follow_request_received_accepted.where(:sender_id => @current_user.id).at(0)
-
     if @current_user.nil? == true
       redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
     else
+      @current_follower = @follow_request_received_accepted.where(:sender_id => @current_user.id).at(0)
       if @current_user.id == @the_user.id
         render({ :template => "users/show_owned_photo.html.erb" })
       else
