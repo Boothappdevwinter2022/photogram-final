@@ -88,6 +88,8 @@ Rails.application.routes.draw do
   # SHOW USER FEED
   get("/users/:a_username/feed", { :controller => "users", :action => "feed"})
 
+  # SHOW USER DISCOVERY
+  get("/users/:a_username/discover", { :controller => "users", :action => "discover"})
   # ------------------------------
 
   # SIGN IN FORM

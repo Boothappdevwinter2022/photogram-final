@@ -67,6 +67,23 @@ class UsersController < ApplicationController
     @follow_request_sent_accepted = @follow_request_sent.where({ :status => "accepted" })
 
     @followed_ids = @follow_request_sent_accepted.map(&:recipient_id)
+    @likes_by_followed_photos = Like.where(fan_id: @followed_ids)
+    @liked_photos = Photo.where(id: @likes_by_followed_photos)
+
+    render({ :template => "/users/show_discovery.html.erb" })
+  end
+
+  def discover
+    @p_username = params.fetch("a_username")
+    @the_user = User.where({ :username => @p_username }).at(0)
+
+    @follow_request_received = FollowRequest.where({ :recipient_id => @the_user.id })
+    @follow_request_sent = FollowRequest.where({ :sender_id => @the_user.id })
+
+    @follow_request_received_accepted = @follow_request_received.where({ :status => "accepted" })
+    @follow_request_sent_accepted = @follow_request_sent.where({ :status => "accepted" })
+
+    @followed_ids = @follow_request_sent_accepted.map(&:recipient_id)
     @followed_photos = Photo.where( owner_id: @followed_ids )
 
     render({ :template => "/users/show_feed.html.erb" })

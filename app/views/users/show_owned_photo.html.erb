@@ -3,11 +3,7 @@
 <dl>
   <dt>Private</dt>
   <dd>
-    <% if @the_user.private == true%>
-      <%= "Yes" %>
-    <% else %>
-      <%= "No" %>
-    <% end %>
+    <%= @the_user.private%>
   </dd>
 
   <dt>Followers</dt>
