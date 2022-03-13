@@ -16,7 +16,7 @@
     <input id="browser_input" type="file" name="query_image" placeholder="Enter a URL for the image...">
     <label for="browser_caption">Caption</label>
     <textarea id="browser_caption" name="query_caption" placeholder="Enter a caption for the photo..."></textarea>
-    <input id="query_owner_id" name="query_owner_id" value="<%= @current_user.id %>">
+    <input type="hidden" id="query_owner_id" name="query_owner_id" value="<%= @current_user.id %>">
     <button>Add photo</button>
   </form>
 <hr>
