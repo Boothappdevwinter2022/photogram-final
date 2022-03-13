@@ -85,6 +85,9 @@ Rails.application.routes.draw do
   # SHOW USER OWNED PHOTO PAGE
   get("/users/:a_username/liked_photos", { :controller => "users", :action => "liked_photo"})
 
+  # SHOW USER FEED
+  get("/users/:a_username/feed", { :controller => "users", :action => "feed"})
+
   # ------------------------------
 
   # SIGN IN FORM
