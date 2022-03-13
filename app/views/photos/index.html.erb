@@ -17,6 +17,8 @@
     <label for="browser_caption">Caption</label>
     <textarea id="browser_caption" name="query_caption" placeholder="Enter a caption for the photo..."></textarea>
     <input type="hidden" id="query_owner_id" name="query_owner_id" value="<%= @current_user.id %>">
+    <input type="hidden" id="query_comments_count" name="query_comments_count" value=0>
+    <input type="hidden" id="query_comments_count" name="query_likes_count" value=0>
     <button>Add photo</button>
   </form>
 <hr>

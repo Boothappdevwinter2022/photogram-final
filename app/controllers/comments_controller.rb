@@ -25,6 +25,8 @@ class CommentsController < ApplicationController
 
     if the_comment.valid?
       the_comment.save
+      the_photo = Photo.where({:id => the_comment.photo_id}).at(0)
+      the_photo.comments_count = the_photo.comments_count + 1
       redirect_to("/photos/#{the_comment.photo_id}")
     else
       redirect_to("/comments", { :alert => the_comment.errors.full_messages.to_sentence })
