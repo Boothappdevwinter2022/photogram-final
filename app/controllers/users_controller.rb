@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     render({ :template => "users/show_liked_photo.html.erb" })
   end
 
-  def feed
+  def discover
     @p_username = params.fetch("a_username")
     @the_user = User.where({ :username => @p_username }).at(0)
 
@@ -70,10 +70,10 @@ class UsersController < ApplicationController
     @likes_by_followed_photos = Like.where(fan_id: @followed_ids)
     @liked_photos = Photo.where(id: @likes_by_followed_photos)
 
-    render({ :template => "/users/show_discovery.html.erb" })
+    render({ :template => "/users/show_discover.html.erb" })
   end
 
-  def discover
+  def feed
     @p_username = params.fetch("a_username")
     @the_user = User.where({ :username => @p_username }).at(0)
 
