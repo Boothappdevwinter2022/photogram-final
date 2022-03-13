@@ -17,7 +17,20 @@
     </div>
     <div>
     <% if @current_user.id == @the_user.id %>
-      <% @current_user.username %>
+      <h4>Pending follow requests</h4>
+      <ul>
+        <% @follow_request_received_pending.each do |a_pending|%>
+        <li>
+          <%= User.where({ :id => a_pending.sender_id}).at(0).username %>
+          <div>
+            <button>Accept</button>
+          </div>
+          <div>
+            <button>Reject</button>
+          </div>
+        </li>
+        <% end %>
+      </ul>
     <% else %>
       <% if @current_follower.nil? == true %>
           <form action="/insert_follow_request" method="post">
@@ -36,7 +49,24 @@
 
   <dt>Following</dt>
   <dd><%= @follow_request_sent_accepted.count %> </dd>
+  
+  <% if @current_user.id == @the_user.id %>
+  <dt>
+    Edit user  
+  </dt>
+  <dd>
+    <form action="/modify_user/<%= @the_user.username %>" method="post">
+      <label for="browser_username">Username</label>
+      <input id="browser_username" type="text" name="query_username" placeholder="Enter a username..."
+        value=<%= @the_user.username %>>
 
+      <label for="browser_private">Private?</label>
+      <input id="browser_private" type="checkbox" name="query_private"  checked>
+
+      <button>Update user</button>
+    </form>
+  </dd>
+  <% end %>
 </dl>
 
 <nav>

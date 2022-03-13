@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @follow_request_received_accepted = @follow_request_received.where({ :status => "accepted" })
     @follow_request_sent_accepted = @follow_request_sent.where({ :status => "accepted" })
 
-    # @follow_request_received_pending = @follow_request_received.where({ :status => "pending"})
+    @follow_request_received_pending = @follow_request_received.where({ :status => "pending"})
     # @follow_request_sent_pending = @follow_request_sent.where({ :status => "pending"})
 
     # @follow_request_received_rejected = @follow_request_received.where({ :status => "rejected"})
