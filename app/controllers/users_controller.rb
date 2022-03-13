@@ -41,6 +41,18 @@ class UsersController < ApplicationController
   end
 
   def liked_photo
+    @p_username = params.fetch("a_username")
+    @the_user = User.where({ :username => @p_username }).at(0)
+
+    @follow_request_received = FollowRequest.where({ :recipient_id => @the_user.id })
+    @follow_request_sent = FollowRequest.where({ :sender_id => @the_user.id })
+
+    @follow_request_received_accepted = @follow_request_received.where({ :status => "accepted" })
+    @follow_request_sent_accepted = @follow_request_sent.where({ :status => "accepted" })
+
+    @photo_likes = Like.where({ :fan_id => @the_user.id }).map(&:photo_id)
+    @liked_photos = Photo.where({id: @photo_likes})
+
     render({ :template => "users/show_liked_photo.html.erb" })
   end
 end

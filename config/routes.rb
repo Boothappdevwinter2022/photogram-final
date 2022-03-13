@@ -78,8 +78,12 @@ Rails.application.routes.draw do
 
   # SHOW ALL USERS:
   get("/users", { :controller => "users", :action => "index" })
+
   # SHOW USER OWNED PHOTO PAGE
   get("/users/:a_username", { :controller => "users", :action => "owned_photo"})
+
+  # SHOW USER OWNED PHOTO PAGE
+  get("/users/:a_username/liked_photos", { :controller => "users", :action => "liked_photo"})
 
   # ------------------------------
 
