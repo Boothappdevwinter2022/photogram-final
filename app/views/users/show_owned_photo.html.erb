@@ -19,10 +19,7 @@
     <% if @current_user.id == @the_user.id %>
       <% @current_user.username %>
     <% else %>
-      <% if @current_follower.nil? == false %>
-        <a href="/delete_follow_request/<%= @current_follower.id %>"> Unfollow </a>
-      <% else %>
-        <div>
+      <% if @current_follower.nil? == true %>
           <form action="/insert_follow_request" method="post">
             <input type="hidden" name="query_recipient_id" id="query_recipient_id" value=<%= @the_user.id %>>
             <input type="hidden" name="query_sender_id" id="query_sender_id" value=<%= @current_user.id %>>
@@ -30,7 +27,8 @@
               Follow
             </button>
           </form>
-        </div>
+      <% else %>
+        <a href="/delete_follow_request/<%= @current_follower.id %>"> Unfollow </a>
       <% end %>
     <% end %>
     </div>
